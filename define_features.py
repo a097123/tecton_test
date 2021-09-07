@@ -15,7 +15,7 @@ req_schema = tecton.RequestDataSource(request_schema=request_schema)
     inputs={"req": tecton.Input(req_schema)},
     mode="pandas",
     output_schema=StructType([
-        StructField("ranked_credit", IntegerType())
+        StructField("ranked_credit", LongType())
     ]),
 )
 def rank_credit(req: pandas.DataFrame):
@@ -29,7 +29,7 @@ def rank_credit(req: pandas.DataFrame):
     inputs={"req": tecton.Input(req_schema)},
     mode="pandas",
     output_schema=StructType([
-        StructField("enocded_veh_make", IntegerType())
+        StructField("encode_veh_make", LongType())
     ]),
 )
 def encode_veh_make(req: pandas.DataFrame):
@@ -47,6 +47,5 @@ fs = tecton.FeatureService(
     name = 'bruce_sample_feature_service',
     features=[
         rank_credit,
-        encode_veh_make
     ]
 )
